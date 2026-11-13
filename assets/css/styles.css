@@ -4,10 +4,12 @@
 @font-face{font-family:"Inter";src:url(../fonts/inter.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 
 :root{
-  --ivory:#f8f5ef; --tint:#f0eadf; --paper:#fffdf9;
-  --ink:#1c1b19; --ink-2:#3a3732; --muted:#5f5a52; --line:#e2d9ca; --line-strong:#cfc3b0;
-  --accent:#8a6427; --gold:#e3c07f;
-  --dark:#1d1c1a; --dark-2:#262421; --on-dark:#f3eee5; --on-dark-muted:#bdb4a6; --dark-line:#3b3833;
+  /* Revision 1: warm palette. Soft cream base, pale stone alternate, warm charcoal bands. All text pairs meet WCAG AA. */
+  --ivory:#f4ede1; --tint:#e9e0d0; --paper:#fbf7f0;
+  --ink:#1e1c19; --ink-2:#37332d; --muted:#5b544a; --line:#dccfbb; --line-strong:#c3b399; --field-border:#9a8a6f;
+  --accent:#7a5522; --gold:#e3c07f; --error:#9e2f1c;
+  --dark:#23201c; --dark-2:#2b2723; --footer:#191714; --on-dark:#f4ede1; --on-dark-muted:#bfb5a5; --dark-line:#3d3832;
+  --header-bg:rgba(244,237,225,.94); --focus-ring:rgba(122,85,34,.28);
   --serif:"Cormorant Garamond",ui-serif,Georgia,"Times New Roman",serif;
   --sans:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --fs-sm:.875rem; --fs-base:1.0625rem; --fs-lead:clamp(1.125rem,1.05rem + .35vw,1.3125rem);
@@ -73,7 +75,7 @@ dl,dd{margin:0}
 .text-link-muted{color:var(--muted)}
 
 /* Header */
-.site-header{position:sticky;top:0;z-index:50;background:rgba(248,245,239,.94);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid transparent;transition:border-color .2s ease}
+.site-header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid transparent;transition:border-color .2s ease}
 .site-header.is-scrolled{border-bottom-color:var(--line)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:var(--header-h)}
 .brand{display:block;flex:none;line-height:0}
@@ -240,7 +242,7 @@ dl,dd{margin:0}
 .contact-list{display:grid;gap:0;border-top:1px solid var(--dark-line)}
 .contact-list>div{display:grid;gap:.25rem;padding:1.125rem 0;border-bottom:1px solid var(--dark-line)}
 .contact-list dt{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-muted)}
-.contact-list dd a{font-family:var(--serif);font-size:clamp(1.375rem,1.25rem + .5vw,1.625rem);line-height:1.3;color:var(--on-dark);text-decoration:underline;text-decoration-color:rgba(243,238,229,.3);text-underline-offset:.25em;overflow-wrap:anywhere;display:inline-block;padding-block:.125rem}
+.contact-list dd a{font-family:var(--serif);font-size:clamp(1.375rem,1.25rem + .5vw,1.625rem);line-height:1.3;color:var(--on-dark);text-decoration:underline;text-decoration-color:rgba(244,237,225,.35);text-underline-offset:.25em;overflow-wrap:anywhere;display:inline-block;padding-block:.125rem}
 .contact-list dd a:hover{text-decoration-color:var(--gold)}
 @media (min-width:600px) and (max-width:999.98px),(min-width:1200px){.contact-list>div{grid-template-columns:9rem 1fr;align-items:baseline;gap:1rem}}
 @media (min-width:1000px){.contact-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(3rem,2rem + 4vw,6rem);align-items:start}}
@@ -254,19 +256,19 @@ dl,dd{margin:0}
 .field label{display:block;font-size:.875rem;font-weight:500;margin-bottom:.4rem}
 .req{color:var(--accent)}
 .optional{color:var(--muted);font-weight:400}
-.field input,.field select,.field textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);border-radius:var(--radius);padding:.75rem .875rem;min-height:48px;transition:border-color .2s ease,box-shadow .2s ease;appearance:none;-webkit-appearance:none}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--field-border);border-radius:var(--radius);padding:.75rem .875rem;min-height:48px;transition:border-color .2s ease,box-shadow .2s ease;appearance:none;-webkit-appearance:none}
 .field textarea{resize:vertical;min-height:140px;line-height:1.55}
 .field input:hover,.field select:hover,.field textarea:hover{border-color:var(--muted)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(138,100,39,.25)}
-.field [aria-invalid="true"]{border-color:#a3321f}
-.field [aria-invalid="true"]:focus{box-shadow:0 0 0 3px rgba(163,50,31,.2)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px var(--focus-ring)}
+.field [aria-invalid="true"]{border-color:var(--error)}
+.field [aria-invalid="true"]:focus{box-shadow:0 0 0 3px rgba(158,47,28,.2)}
 .select-wrap{position:relative}
 .select-wrap::after{content:"";position:absolute;right:1rem;top:50%;width:7px;height:7px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
 .field select{padding-right:2.5rem;cursor:pointer}
-.field-error{color:#a3321f;font-size:.8125rem;margin:.35rem 0 0;min-height:0}
+.field-error{color:var(--error);font-size:.8125rem;margin:.35rem 0 0;min-height:0}
 .field-error:empty{display:none}
 .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
-.form-status{margin-top:1rem;font-size:.875rem;color:#a3321f}
+.form-status{margin-top:1rem;font-size:.875rem;color:var(--error)}
 .form-status:empty{display:none}
 .form-success{outline:none}
 .form-success .success-mark{width:48px;height:48px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-size:1.25rem;margin-bottom:1.5rem}
@@ -276,7 +278,7 @@ dl,dd{margin:0}
 .form-success .btn{margin-top:1.5rem}
 
 /* Footer */
-.site-footer{background:#151412;color:var(--on-dark-muted);padding-top:clamp(3.5rem,2.5rem + 3vw,5rem);font-size:.9375rem}
+.site-footer{background:var(--footer);color:var(--on-dark-muted);padding-top:clamp(3.5rem,2.5rem + 3vw,5rem);font-size:.9375rem}
 .footer-grid{display:grid;gap:2.5rem;padding-bottom:3rem}
 .footer-logo{display:inline-block;line-height:0}
 .footer-logo img{height:44px;width:auto}
